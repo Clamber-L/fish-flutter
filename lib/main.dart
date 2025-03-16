@@ -3,6 +3,7 @@ import 'package:flutter_fish/common/net/interceptor_catch.dart';
 import 'package:flutter_fish/common/routers/names.dart';
 import 'package:flutter_fish/common/routers/pages.dart';
 import 'package:flutter_fish/common/utils/color_extension.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -14,23 +15,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      navigatorObservers: [CacheManager.observer],
-      title: 'Music Player',
-      debugShowCheckedModeBanner: false,
-      getPages: RoutePages.list,
-      initialRoute: RouteNames.splashView,
-      defaultTransition: Transition.leftToRight,
-      theme: ThemeData(
-        fontFamily: 'Circular Std',
-        scaffoldBackgroundColor: TColor.bg,
-        textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: TColor.primaryText,
-          displayColor: TColor.primaryText,
-        ),
-        colorScheme: ColorScheme.fromSeed(seedColor: TColor.primary),
-        useMaterial3: false,
-      ),
+    return ScreenUtilInit(
+      designSize: Size(375, 812), // 设计稿尺寸
+      builder: (context, child) {
+        return GetMaterialApp(
+          navigatorObservers: [CacheManager.observer],
+          title: 'Music Player',
+          debugShowCheckedModeBanner: false,
+          getPages: RoutePages.list,
+          initialRoute: RouteNames.splashView,
+          defaultTransition: Transition.leftToRight,
+          theme: ThemeData(
+            fontFamily: 'Circular Std',
+            scaffoldBackgroundColor: TColor.bg,
+            textTheme: Theme.of(context).textTheme.apply(bodyColor: TColor.primaryText, displayColor: TColor.primaryText),
+            colorScheme: ColorScheme.fromSeed(seedColor: TColor.primary),
+            useMaterial3: false,
+          ),
+        );
+      },
     );
   }
 }
