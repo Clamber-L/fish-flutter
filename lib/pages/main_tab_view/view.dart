@@ -17,7 +17,11 @@ class MainTabViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TabBarView(controller: controller.tabController, children: [HomePage(), RecordPage(), SizedBox(width: 1), DiscoverPage(), ProfilePage()]),
+      body: TabBarView(
+        controller: controller.tabController,
+        physics: NeverScrollableScrollPhysics(),
+        children: [HomePage(), RecordPage(), SizedBox(width: 1), DiscoverPage(), ProfilePage()],
+      ),
       bottomNavigationBar: BottomAppBar(
         height: 50.h,
         shape: const CircularNotchedRectangle(),
