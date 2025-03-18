@@ -19,7 +19,7 @@ class MainTabViewController extends GetxController
   void onInit() {
     super.onInit();
     // 初始化 TabController
-    tabController = TabController(length: 4, vsync: this);
+    tabController = TabController(length: 5, vsync: this);
     tabController.addListener(() {
       state.selected.value = tabController.index; // 使用 Rx 更新 selected 值
     });

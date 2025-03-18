@@ -139,31 +139,28 @@ class _HomePageState extends State<HomePage> {
     ];
     // 在 HomePage build 方法中修改外层布局
     return SafeArea(
-      child: Container(
-        color: Colors.grey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12), // 增加水平间距
-          child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(), // 更自然的滚动效果
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const SizedBox(height: 8),
-                SummaryCard(),
-                const SizedBox(height: 20), // 增加卡片间距
-                // ListView.builder(
-                //   shrinkWrap: true,
-                //   physics: const NeverScrollableScrollPhysics(),
-                //   itemCount: records.length,
-                //   itemBuilder: (context, index) {
-                //     return Padding(
-                //       padding: const EdgeInsets.only(bottom: 10), // 列表项间距
-                //       child: FishCard(record: records[index]),
-                //     );
-                //   },
-                // ),
-              ],
-            ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12), // 增加水平间距
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(), // 更自然的滚动效果
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(height: 8),
+              SummaryCard(),
+              const SizedBox(height: 20), // 增加卡片间距
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: records.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10), // 列表项间距
+                    child: FishCard(record: records[index]),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
