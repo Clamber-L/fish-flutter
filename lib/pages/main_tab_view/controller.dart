@@ -4,7 +4,8 @@ import 'package:flutter_fish/common/widgets/status_view.dart';
 import 'package:flutter_fish/pages/main_tab_view/state.dart';
 import 'package:get/get.dart';
 
-class MainTabViewController extends GetxController with GetSingleTickerProviderStateMixin {
+class MainTabViewController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   final state = MainTabViewState();
   final userApi = UserApi();
   late final StatusViewController statusViewController;
@@ -18,7 +19,7 @@ class MainTabViewController extends GetxController with GetSingleTickerProviderS
   void onInit() {
     super.onInit();
     // 初始化 TabController
-    tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 4, vsync: this);
     tabController.addListener(() {
       state.selected.value = tabController.index; // 使用 Rx 更新 selected 值
     });

@@ -28,7 +28,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             fontFamily: 'Circular Std',
             scaffoldBackgroundColor: TColor.bg,
-            textTheme: Theme.of(context).textTheme.apply(bodyColor: TColor.primaryText, displayColor: TColor.primaryText),
+            textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: TColor.primaryText,
+              displayColor: TColor.primaryText,
+            ),
             colorScheme: ColorScheme.fromSeed(seedColor: TColor.primary),
             useMaterial3: false,
           ),
