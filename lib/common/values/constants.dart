@@ -3,8 +3,7 @@ import 'package:dio/dio.dart';
 /// 常量
 class Constants {
   // 服务 api
-  static const baseUrl =
-      'https://mock.presstime.cn/mock/67ce5210ec85d3a70783775f';
+  static const baseUrl = 'http://localhost:8000';
 
   // 服务端返回状态码(成功)
   static const successCode = 200;

@@ -1,5 +1,5 @@
+import 'package:flutter_fish/common/index.dart';
+
 class HomeState {
-  HomeState() {
-    ///Initialize variables
-  }
+  List<FishRecord>? fishRecord = [];
 }

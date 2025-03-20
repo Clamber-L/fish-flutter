@@ -19,88 +19,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<FishRecord> records = [
-      FishRecord(
-        time: "上午 09:30",
-        type: "草鱼",
-        weight: "1.2kg",
-        bait: "玉米粒",
-        imageUrl: "https://cdn.pixabay.com/photo/2017/05/31/00/24/aquarium-2358739_1280.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "上午 11:15",
-        type: "鲫鱼",
-        weight: "0.8kg",
-        bait: "虾饵",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2017/05/31/00/24/aquarium-2358739_1280.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-      FishRecord(
-        time: "下午 14:45",
-        type: "鲤鱼",
-        weight: "1.5kg",
-        bait: "红虫",
-        imageUrl: "https://cdn.pixabay.com/photo/2014/05/08/15/56/rainbow-trout-340352_640.jpg",
-        address: "南湖水库",
-      ),
-    ];
     // 在 HomePage build 方法中修改外层布局
     return SafeArea(
       child: Padding(
@@ -115,14 +33,18 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 8.h),
               HarvestCard(),
               SizedBox(height: 20.h), // 增加卡片间距
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: records.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 10), // 列表项间距
-                    child: FishCard(record: records[index]),
+              GetBuilder<HomeLogic>(
+                builder: (builder) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.fishRecord?.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10), // 列表项间距
+                        child: FishCard(record: state.fishRecord![index]),
+                      );
+                    },
                   );
                 },
               ),
@@ -189,25 +111,6 @@ class SummaryCard extends StatelessWidget {
   }
 }
 
-Widget _buildStatItem(String title, String value, Color color) {
-  return Expanded(
-    flex: 1,
-    child: Container(
-      padding: EdgeInsets.only(top: 8.h, bottom: 8.h),
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.all(Radius.circular(10.r))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(title, style: TextStyle(fontSize: 16.sp, color: Colors.white, fontWeight: FontWeight.w500)),
-          const SizedBox(height: 4),
-          Text(value, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 0.8)),
-        ],
-      ),
-    ),
-  );
-}
-
 class HarvestCard extends StatelessWidget {
   const HarvestCard({super.key});
 
@@ -228,11 +131,11 @@ class HarvestCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildStatItem("65%", "湿度", Colors.green[400]!),
+                _buildStatItem("5", "总数量", Colors.green[400]!),
                 SizedBox(width: 10.w),
-                _buildStatItem("3.2", "风速(m/s)", Colors.green[400]!),
+                _buildStatItem("2.8", "总重量(kg)", Colors.green[400]!),
                 SizedBox(width: 10.w),
-                _buildStatItem("22℃", "水温", Colors.green[400]!),
+                _buildStatItem("2", "时长(h)", Colors.green[400]!),
               ],
             ),
           ],
@@ -240,6 +143,25 @@ class HarvestCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _buildStatItem(String title, String value, Color color) {
+  return Expanded(
+    flex: 1,
+    child: Container(
+      padding: EdgeInsets.only(top: 8.h, bottom: 8.h),
+      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.all(Radius.circular(10.r))),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(title, style: TextStyle(fontSize: 16.sp, color: Colors.white, fontWeight: FontWeight.w700)),
+          const SizedBox(height: 4),
+          Text(value, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 0.8)),
+        ],
+      ),
+    ),
+  );
 }
 
 class FishCard extends StatelessWidget {
@@ -351,15 +273,4 @@ class FishCard extends StatelessWidget {
       ],
     );
   }
-}
-
-class FishRecord {
-  final String time;
-  final String type;
-  final String weight;
-  final String bait;
-  final String imageUrl;
-  final String address;
-
-  FishRecord({required this.time, required this.type, required this.weight, required this.bait, required this.imageUrl, required this.address});
 }
