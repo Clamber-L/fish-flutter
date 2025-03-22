@@ -11,12 +11,16 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
-  final ProfileLogic logic = Get.put(ProfileLogic());
+class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClientMixin<ProfilePage> {
+  final ProfileLogic logic = Get.find();
   final ProfileState state = Get.find<ProfileLogic>().state;
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(body: SafeArea(child: Center(child: Text("profile page", style: TextStyle(color: Colors.black)))));
   }
 

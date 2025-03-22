@@ -11,12 +11,13 @@ class RecordPage extends StatefulWidget {
   State<RecordPage> createState() => _RecordPageState();
 }
 
-class _RecordPageState extends State<RecordPage> {
+class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMixin {
   final RecordLogic logic = Get.put(RecordLogic());
   final RecordState state = Get.find<RecordLogic>().state;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(body: SafeArea(child: Center(child: Text("record page", style: TextStyle(color: Colors.black)))));
   }
 
@@ -25,4 +26,7 @@ class _RecordPageState extends State<RecordPage> {
     Get.delete<RecordLogic>();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -13,14 +13,10 @@ class HomeLogic extends GetxController {
     getRecordList();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void getRecordList() async {
     List<FishRecord> record = await fishRecordApi.list();
     state.fishRecord = record;
+    state.isLoading = false;
     update();
   }
 }

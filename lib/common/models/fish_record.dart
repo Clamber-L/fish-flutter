@@ -1,6 +1,5 @@
 import 'package:flutter_fish/common/utils/result/model.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'dart:convert';
 
 part 'generated/fish_record.g.dart';
 

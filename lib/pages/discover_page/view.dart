@@ -11,12 +11,13 @@ class DiscoverPage extends StatefulWidget {
   State<DiscoverPage> createState() => _DiscoverPageState();
 }
 
-class _DiscoverPageState extends State<DiscoverPage> {
+class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClientMixin {
   final DiscoverLogic logic = Get.put(DiscoverLogic());
   final DiscoverState state = Get.find<DiscoverLogic>().state;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(body: SafeArea(child: Center(child: Text("discover page", style: TextStyle(color: Colors.black)))));
   }
 
@@ -25,4 +26,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     Get.delete<DiscoverLogic>();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

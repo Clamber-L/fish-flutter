@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fish/common/index.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'logic.dart';
 import 'state.dart';
@@ -13,12 +14,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final HomeLogic logic = Get.put(HomeLogic());
-  final HomeState state = Get.find<HomeLogic>().state;
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
+  final logic = Get.find<HomeLogic>();
+  final state = Get.find<HomeLogic>().state;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     // 在 HomePage build 方法中修改外层布局
     return SafeArea(
       child: Padding(
@@ -32,13 +37,18 @@ class _HomePageState extends State<HomePage> {
               SummaryCard(),
               SizedBox(height: 8.h),
               HarvestCard(),
-              SizedBox(height: 20.h), // 增加卡片间距
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                alignment: Alignment.centerLeft,
+                child: Text("今日收获", style: TextStyle(fontSize: 14.sp, color: Colors.grey, fontWeight: FontWeight.bold)),
+              ),
               GetBuilder<HomeLogic>(
+                init: HomeLogic(),
                 builder: (builder) {
-                  return ListView.builder(
+                  Widget listView = ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: state.fishRecord?.length,
+                    itemCount: state.fishRecord!.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 10), // 列表项间距
@@ -46,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   );
+                  return state.isLoading ? Skeletonizer(enabled: state.isLoading, child: listView) : listView;
                 },
               ),
             ],
@@ -167,7 +178,10 @@ Widget _buildStatItem(String title, String value, Color color) {
 class FishCard extends StatelessWidget {
   final FishRecord record;
 
-  const FishCard({super.key, required this.record});
+  FishCard({super.key, required this.record});
+
+  final logic = Get.find<HomeLogic>();
+  final state = Get.find<HomeLogic>().state;
 
   void _showImagePreview(BuildContext context) {
     showDialog(
@@ -214,11 +228,14 @@ class FishCard extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8, offset: const Offset(0, 4))],
+                        boxShadow: [BoxShadow(color: Colors.black.withAlpha(25), blurRadius: 8, offset: const Offset(0, 4))],
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.network(record.imageUrl, fit: BoxFit.cover, alignment: Alignment.topCenter),
+                        child:
+                            state.isLoading
+                                ? Image.asset("assets/img/1.png")
+                                : Image.network(record.imageUrl, fit: BoxFit.cover, alignment: Alignment.topCenter),
                       ),
                     ),
                   ),

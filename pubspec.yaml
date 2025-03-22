@@ -16,8 +16,8 @@ dependencies:
   dio: ^5.8.0+1
   pretty_dio_logger: ^1.4.0
   flutter_switch: ^0.3.2
-  skeletonizer: ^1.4.3
-  flutter_screenutil: ^5.9.3
+  skeletonizer: ^1.4.3 # 骨架屏
+  flutter_screenutil: ^5.9.3 # 屏幕适配
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -19,10 +19,14 @@ class RoutePages {
   static final List<GetPage> list = [
     GetPage(name: RouteNames.splashView, page: () => SplashViewPage()),
     GetPage(name: RouteNames.loginView, page: () => LoginPage(), binding: LoginBinding()),
-    GetPage(name: RouteNames.mainTabView, page: () => MainTabViewPage(), binding: MainTabViewBinding()),
+    GetPage(
+      name: RouteNames.mainTabView,
+      page: () => MainTabViewPage(),
+      bindings: [MainTabViewBinding(), HomeBinding(), RecordBinding(), DiscoverBinding(), ProfileBinding()],
+    ),
     GetPage(name: RouteNames.homeView, page: () => HomePage(), binding: HomeBinding()),
-    GetPage(name: RouteNames.recordView, page: () => RecordPage(), binding: RecordBinding()),
-    GetPage(name: RouteNames.discoverView, page: () => DiscoverPage(), binding: DiscoverBinding()),
+    GetPage(name: RouteNames.recordView, page: () => RecordPage()),
+    GetPage(name: RouteNames.discoverView, page: () => DiscoverPage()),
     GetPage(name: RouteNames.profileView, page: () => ProfilePage(), binding: ProfileBinding()),
   ];
 }

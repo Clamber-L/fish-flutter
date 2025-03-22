@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 class MainTabViewPage extends StatelessWidget {
   MainTabViewPage({super.key});
 
-  final MainTabViewController controller = Get.put(MainTabViewController());
+  final controller = Get.find<MainTabViewController>();
 
   @override
   Widget build(BuildContext context) {
