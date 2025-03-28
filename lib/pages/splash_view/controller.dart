@@ -1,6 +1,4 @@
 import 'package:flutter_fish/common/routers/names.dart';
-import 'package:flutter_fish/pages/main_tab_view/bindings.dart';
-import 'package:flutter_fish/pages/main_tab_view/view.dart';
 import 'package:get/get.dart';
 
 class SplashViewController extends GetxController {
@@ -16,11 +14,6 @@ class SplashViewController extends GetxController {
   }
 
   void onTap() {}
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
 
   @override
   void onReady() {

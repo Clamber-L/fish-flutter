@@ -4,7 +4,8 @@ import 'package:flutter_fish/common/widgets/status_view.dart';
 import 'package:flutter_fish/pages/main_tab_view/state.dart';
 import 'package:get/get.dart';
 
-class MainTabViewController extends GetxController with GetSingleTickerProviderStateMixin {
+class MainTabViewController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   final state = MainTabViewState();
   final userApi = UserApi();
   late final StatusViewController statusViewController;
@@ -30,11 +31,11 @@ class MainTabViewController extends GetxController with GetSingleTickerProviderS
     super.onClose();
   }
 
-  void oneUser() async {
-    User user = await userApi.getOne();
-    state.text = user.username;
-    update();
-  }
+  // void oneUser() async {
+  //   User user = await userApi.getOne();
+  //   state.text = user.username;
+  //   update();
+  // }
 
   void loading() {
     statusViewController.showLoading();

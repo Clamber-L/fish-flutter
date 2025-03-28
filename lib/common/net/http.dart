@@ -109,7 +109,8 @@ final class Http {
           if (err is DioException && err.error is Result) {
             final result = err.error as Result;
             debugPrint('统一异常处理: $result');
-            throw result;
+            // 修改为返回 Future<T> 类型
+            return Future.value(result as T);
           }
           throw Result.of(0, message: err.toString());
         });

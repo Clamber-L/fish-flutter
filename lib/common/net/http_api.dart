@@ -3,12 +3,14 @@ import 'package:flutter_fish/common/net/http.dart';
 import 'package:flutter_fish/common/utils/result/model.dart';
 import 'package:flutter_fish/common/utils/result/pager.dart';
 import 'package:flutter_fish/common/utils/result/result.dart';
+import 'package:flutter_fish/common/utils/result/status_result.dart';
+import 'package:flutter_fish/common/widgets/status_view.dart';
 
 class HttpApi<M extends Model<M>> {
   final Converter<M> converter;
   const HttpApi(this.converter);
 
-  Future<M> get(
+  Future<StatusResult<M>> get(
     String path, {
     Duration? delay,
     Map<String, dynamic>? query,
@@ -22,10 +24,15 @@ class HttpApi<M extends Model<M>> {
       options: options,
       cancelToken: cancelToken,
       onReceiveProgress: onReceiveProgress,
-    ).then((res) => res.toModel(converter)); // 统一转换成 Model 类
+    ).then(
+      (res) => StatusResult(
+        status: res.success ? Status.LOADED : Status.FAILED,
+        data: res.toModel(converter),
+      ),
+    );
   }
 
-  Future<List<M>> getList(
+  Future<StatusResult<List<M>>> getList(
     String path, {
     Duration? delay,
     Map<String, dynamic>? query,
@@ -39,10 +46,18 @@ class HttpApi<M extends Model<M>> {
       options: options,
       cancelToken: cancelToken,
       onReceiveProgress: onReceiveProgress,
-    ).then((res) => res.toArray(converter)); // 转换成 Model 列表
+    ).then(
+      (res) => StatusResult(
+        status:
+            res.success
+                ? Status.LOADED
+                : StatusResult.convertToStatus(res.code),
+        data: res.toArray(converter),
+      ),
+    );
   }
 
-  Future<Pager<M>> getPageList(
+  Future<StatusPagerResult<M>> getPageList(
     String path, {
     Duration? delay,
     Map<String, dynamic>? query,
@@ -56,7 +71,15 @@ class HttpApi<M extends Model<M>> {
       options: options,
       cancelToken: cancelToken,
       onReceiveProgress: onReceiveProgress,
-    ).then((res) => res.toModel((data) => Pager<M>.fromJson(data, converter)));
+    ).then(
+      (res) => StatusPagerResult(
+        status:
+            res.success
+                ? Status.LOADED
+                : StatusResult.convertToStatus(res.code),
+        data: res.toModel((data) => Pager<M>.fromJson(data, converter)),
+      ),
+    );
   }
 
   Future<bool> post(
