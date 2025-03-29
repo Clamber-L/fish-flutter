@@ -14,8 +14,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with AutomaticKeepAliveClientMixin {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   final logic = Get.find<HomeLogic>();
   final state = Get.find<HomeLogic>().state;
 
@@ -30,9 +29,7 @@ class _HomePageState extends State<HomePage>
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12), // 增加水平间距
         child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(
-            parent: BouncingScrollPhysics(),
-          ), // 更自然的滚动效果
+          physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()), // 更自然的滚动效果
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -43,14 +40,7 @@ class _HomePageState extends State<HomePage>
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  "今日收获",
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text("今日收获", style: TextStyle(fontSize: 14.sp, color: Colors.grey, fontWeight: FontWeight.bold)),
               ),
               GetBuilder<HomeLogic>(
                 init: HomeLogic(),
@@ -73,19 +63,6 @@ class _HomePageState extends State<HomePage>
                     height: 150.h,
                     retry: logic.getRecordList,
                   );
-                  // return state.status == Status.LOADING
-                  //     ? Skeletonizer(enabled: true, child: listView)
-                  //     : state.status == Status.LOADED
-                  //     ? listView
-                  //     : SizedBox(
-                  //       width: MediaQuery.of(context).size.width,
-                  //       height: 150.h,
-                  //       child: StatusView(
-                  //         // 错误状态展示组件
-                  //         retry: logic.getRecordList,
-                  //         status: state.status,
-                  //       ),
-                  //     );
                 },
               ),
             ],
@@ -122,32 +99,14 @@ class SummaryCard extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Text(
-                      "今日天气",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
+                    Text("今日天气", style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300)),
                     SizedBox(height: 12.h),
-                    Text(
-                      "26℃",
-                      style: TextStyle(
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Text("26℃", style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold)),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    'assets/img/1.png',
-                    color: Colors.yellow[300],
-                    width: 40.w,
-                    height: 40.h,
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.asset('assets/img/1.png', color: Colors.yellow[300], width: 40.w, height: 40.h, fit: BoxFit.cover),
                 ),
               ],
             ),
@@ -184,10 +143,7 @@ class HarvestCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "今日收获",
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300),
-            ),
+            Text("今日收获", style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300)),
             SizedBox(height: 15.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -211,32 +167,14 @@ Widget _buildStatItem(String title, String value, Color color) {
     flex: 1,
     child: Container(
       padding: EdgeInsets.only(top: 8.h, bottom: 8.h),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
-      ),
+      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.all(Radius.circular(10.r))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16.sp,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          Text(title, style: TextStyle(fontSize: 16.sp, color: Colors.white, fontWeight: FontWeight.w700)),
           const SizedBox(height: 4),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-              letterSpacing: 0.8,
-            ),
-          ),
+          Text(value, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 0.8)),
         ],
       ),
     ),
@@ -258,14 +196,7 @@ class FishCard extends StatelessWidget {
           (context) => Dialog(
             backgroundColor: Colors.transparent,
             insetPadding: EdgeInsets.all(20),
-            child: InteractiveViewer(
-              panEnabled: true,
-              minScale: 0.5,
-              maxScale: 4.0,
-              child: ClipRRect(
-                child: Image.network(record.imageUrl, fit: BoxFit.fill),
-              ),
-            ),
+            child: InteractiveViewer(panEnabled: true, minScale: 0.5, maxScale: 4.0, child: ClipRRect(child: Image.network(record.imageUrl, fit: BoxFit.fill))),
           ),
     );
   }
@@ -283,26 +214,12 @@ class FishCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  record.time,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 11,
-                    color: Colors.grey[700],
-                  ),
-                ),
+                Text(record.time, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 11, color: Colors.grey[700])),
                 Row(
                   children: [
-                    Icon(
-                      Icons.location_on_outlined,
-                      size: 12,
-                      color: Colors.grey,
-                    ),
+                    Icon(Icons.location_on_outlined, size: 12, color: Colors.grey),
                     const SizedBox(width: 4),
-                    Text(
-                      record.address,
-                      style: TextStyle(color: Colors.grey[600], fontSize: 9),
-                    ),
+                    Text(record.address, style: TextStyle(color: Colors.grey[600], fontSize: 9)),
                   ],
                 ),
               ],
@@ -317,24 +234,14 @@ class FishCard extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withAlpha(25),
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
+                        boxShadow: [BoxShadow(color: Colors.black.withAlpha(25), blurRadius: 8, offset: const Offset(0, 4))],
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child:
                             state.isLoading
                                 ? Image.asset("assets/img/1.png")
-                                : Image.network(
-                                  record.imageUrl,
-                                  fit: BoxFit.cover,
-                                  alignment: Alignment.topCenter,
-                                ),
+                                : Image.network(record.imageUrl, fit: BoxFit.cover, alignment: Alignment.topCenter),
                       ),
                     ),
                   ),
@@ -356,25 +263,10 @@ class FishCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 6),
-                      Container(
-                        height: 2,
-                        width: 24,
-                        color: TColor.primary.withAlpha(51),
-                        margin: const EdgeInsets.only(bottom: 4),
-                      ),
-                      _buildInfoRow(
-                        Icons.eco_rounded,
-                        "饵料",
-                        record.bait,
-                        Colors.grey[600]!,
-                      ),
+                      Container(height: 2, width: 24, color: TColor.primary.withAlpha(51), margin: const EdgeInsets.only(bottom: 4)),
+                      _buildInfoRow(Icons.eco_rounded, "饵料", record.bait, Colors.grey[600]!),
                       const SizedBox(height: 8),
-                      _buildInfoRow(
-                        Icons.balance_outlined,
-                        "重量",
-                        record.weight,
-                        Colors.grey[600]!,
-                      ),
+                      _buildInfoRow(Icons.balance_outlined, "重量", record.weight, Colors.grey[600]!),
                     ],
                   ),
                 ),
@@ -396,22 +288,8 @@ class FishCard extends StatelessWidget {
         RichText(
           text: TextSpan(
             children: [
-              TextSpan(
-                text: "$label\n",
-                style: TextStyle(
-                  fontSize: 10,
-                  color: color.withAlpha(150),
-                  height: 1.4,
-                ),
-              ),
-              TextSpan(
-                text: value,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: color,
-                ),
-              ),
+              TextSpan(text: "$label\n", style: TextStyle(fontSize: 10, color: color.withAlpha(150), height: 1.4)),
+              TextSpan(text: value, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: color)),
             ],
           ),
         ),
