@@ -6,7 +6,7 @@ class SplashViewController extends GetxController {
 
   void loadView() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.offNamed(RouteNames.mainTabView);
+    Get.offNamed(RouteNames.loginView);
   }
 
   _initData() {

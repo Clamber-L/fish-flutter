@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_fish/common/routers/names.dart';
 import 'package:flutter_fish/pages/discover_page/view.dart';
 import 'package:flutter_fish/pages/home_page/view.dart';
 import 'package:flutter_fish/pages/main_tab_view/controller.dart';
@@ -49,7 +50,7 @@ Widget _barIcon(MainTabViewController controller, int index, String text) {
 
 Widget _addIcon() {
   return GestureDetector(
-    onTap: () => Get.snackbar("title", "message"),
+    onTap: () => Get.toNamed(RouteNames.addRecordView),
     child: Transform.rotate(
       angle: -math.pi / 4,
       child: Container(

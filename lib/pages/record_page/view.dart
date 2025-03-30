@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fish/common/widgets/button.dart';
-import 'package:flutter_fish/pages/home_page/view.dart';
+import 'package:flutter_fish/pages/home_page/weiget/home_weiget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -16,14 +16,8 @@ class RecordPage extends StatefulWidget {
 }
 
 class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMixin {
-  final RecordLogic logic = Get.put(RecordLogic());
+  final RecordLogic logic = Get.find<RecordLogic>();
   final RecordState state = Get.find<RecordLogic>().state;
-
-  final records = [
-    Text("收获详情", style: TextStyle(color: Colors.black, fontSize: 12.sp)),
-    Text("收获详情", style: TextStyle(color: Colors.black, fontSize: 12.sp)),
-    Text("收获详情", style: TextStyle(color: Colors.black, fontSize: 12.sp)),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +28,7 @@ class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMi
           padding: EdgeInsets.symmetric(horizontal: 12),
           child: Column(
             children: [
-              // 顶部卡片内容
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-                child: Row(
-                  children: [
-                    Text('钓鱼记录', style: TextStyle(fontSize: 20.sp, color: Colors.black, fontWeight: FontWeight.bold)),
-                    Spacer(),
-                    Icon(Icons.filter_list, size: 24.r),
-                  ],
-                ),
-              ),
+              SizedBox(height: 8.h),
               // 收获卡片
               SummaryCard(),
               // 最佳收获

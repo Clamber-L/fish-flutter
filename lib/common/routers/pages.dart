@@ -1,4 +1,6 @@
 import 'package:flutter_fish/common/routers/names.dart';
+import 'package:flutter_fish/pages/add_record_page/binding.dart';
+import 'package:flutter_fish/pages/add_record_page/view.dart';
 import 'package:flutter_fish/pages/discover_page/binding.dart';
 import 'package:flutter_fish/pages/discover_page/view.dart';
 import 'package:flutter_fish/pages/home_page/binding.dart';
@@ -28,5 +30,6 @@ class RoutePages {
     GetPage(name: RouteNames.recordView, page: () => RecordPage()),
     GetPage(name: RouteNames.discoverView, page: () => DiscoverPage()),
     GetPage(name: RouteNames.profileView, page: () => ProfilePage(), binding: ProfileBinding()),
+    GetPage(name: RouteNames.addRecordView, page: () => AddRecordPage(), binding: AddRecordBinding()),
   ];
 }
