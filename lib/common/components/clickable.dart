@@ -78,12 +78,7 @@ class _ClickableState extends State<Clickable> {
       margin: widget.margin,
       width: widget.width,
       height: widget.height,
-      decoration: BoxDecoration(
-        color: bgColor,
-        border: widget.border,
-        borderRadius: widget.borderRadius,
-        boxShadow: widget.boxShadow,
-      ),
+      decoration: BoxDecoration(color: bgColor, border: widget.border, borderRadius: widget.borderRadius, boxShadow: widget.boxShadow),
       alignment: widget.alignment,
       constraints: widget.constraints,
       child: widget.child ?? widget.builder?.call(),
@@ -93,11 +88,6 @@ class _ClickableState extends State<Clickable> {
       return wrapper;
     }
 
-    return ClickableGestureDetector(
-      onHandle: _change,
-      onTap: widget.onTap,
-      onLongPress: widget.onLongPress,
-      child: wrapper,
-    );
+    return ClickableGestureDetector(onHandle: _change, onTap: widget.onTap, onLongPress: widget.onLongPress, child: wrapper);
   }
 }

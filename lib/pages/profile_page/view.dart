@@ -28,12 +28,12 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
         // 中间我的成就
         // 底部其他信息
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 12.h),
           child: Column(
             children: [
               // 头部人物资料信息
               Container(
-                padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+                padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.h),
                 decoration: BoxDecoration(color: HexColor("#50AB8B"), borderRadius: BorderRadius.circular(12.r)),
                 child: Row(
                   children: [
@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                       backgroundColor: Colors.transparent,
                       backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/05/31/00/24/aquarium-2358739_1280.jpg"),
                     ),
-                    SizedBox(width: 20.w),
+                    SizedBox(width: 20.h),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                             children: [
                               Text("钓鱼老手", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400)),
                               Container(
-                                margin: EdgeInsets.symmetric(horizontal: 5.w),
+                                margin: EdgeInsets.symmetric(horizontal: 5.h),
                                 child: SizedBox(width: 1, height: 12, child: DecoratedBox(decoration: BoxDecoration(color: Colors.grey[300]))),
                               ),
                               Text("已钓鱼384天", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400)),
@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                           Row(
                             children: [
                               Container(
-                                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 8.w),
+                                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 8.h),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r), color: Colors.white.withAlpha(50)),
                                 child: Text("钓鱼283天", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w300)),
                               ),
@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                   // 中间我的成就
                   Container(
                     margin: EdgeInsets.only(top: 20.h),
-                    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+                    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.h),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -98,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                           physics: NeverScrollableScrollPhysics(),
                           crossAxisCount: 4,
                           mainAxisSpacing: 8.h, // Reduced from 12.h
-                          crossAxisSpacing: 8.w, // Reduced from 12.w
+                          crossAxisSpacing: 8.h, // Reduced from 12.h
                           children: List.generate(8, (index) {
                             return Column(
                               children: [
@@ -131,7 +131,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                   // 底部其他信息
                   Container(
                     margin: EdgeInsets.only(top: 20.h),
-                    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+                    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.h),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -169,7 +169,7 @@ Widget _buildMenuItem(IconData icon, String title) {
     child: Row(
       children: [
         Icon(icon, color: HexColor("#50AB8B"), size: 24.r),
-        SizedBox(width: 16.w),
+        SizedBox(width: 16.h),
         Text(title, style: TextStyle(fontSize: 16.sp, color: Colors.black)),
         Spacer(),
         Icon(Icons.chevron_right, color: Colors.grey, size: 20.r),

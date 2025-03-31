@@ -54,19 +54,19 @@ Widget _addIcon() {
     child: Transform.rotate(
       angle: -math.pi / 4,
       child: Container(
-        width: 35.w,
-        height: 35.w,
+        width: 35.h,
+        height: 35.h,
         decoration: BoxDecoration(
           // boxShadow: [BoxShadow(spreadRadius: 2, blurRadius: 15, offset: Offset(0, 1))],
           // color: Colors.black,
-          border: Border.all(width: 2.w),
+          border: Border.all(width: 2.h),
           borderRadius: BorderRadius.circular(15.r),
         ),
         child: Transform.rotate(
           angle: -math.pi / 4,
           child: Center(
             //图标任你换
-            child: Icon(Icons.add, color: Colors.black, size: 26.w),
+            child: Icon(Icons.add, color: Colors.black, size: 26.h),
           ),
         ),
       ),

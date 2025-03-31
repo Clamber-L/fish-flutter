@@ -26,7 +26,7 @@ class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClie
           children: [
             // 顶部搜索栏
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.h),
               child: Row(
                 children: [
                   Expanded(
@@ -47,7 +47,7 @@ class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClie
                       ),
                     ),
                   ),
-                  SizedBox(width: 12.w),
+                  SizedBox(width: 12.h),
                   Icon(Icons.notifications_none, size: 24.r),
                 ],
               ),
@@ -60,12 +60,12 @@ class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClie
                 height: 40.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  padding: EdgeInsets.symmetric(horizontal: 16.h),
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: EdgeInsets.only(right: 12.w),
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      margin: EdgeInsets.only(right: 12.h),
+                      padding: EdgeInsets.symmetric(horizontal: 16.h),
                       decoration: BoxDecoration(
                         color: index == 0 ? HexColor("#50AB8B") : Colors.transparent,
                         borderRadius: BorderRadius.circular(20.r),
@@ -90,7 +90,7 @@ class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClie
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: EdgeInsets.only(bottom: 16.h, left: 16.w, right: 16.w),
+                    margin: EdgeInsets.only(bottom: 16.h, left: 16.h, right: 16.h),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -118,11 +118,11 @@ class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClie
                               Row(
                                 children: [
                                   Icon(Icons.location_on, size: 16.r, color: HexColor("#50AB8B")),
-                                  SizedBox(width: 4.w),
+                                  SizedBox(width: 4.h),
                                   Text('北京市朝阳区', style: TextStyle(fontSize: 12.sp, color: Colors.black)),
                                   Spacer(),
                                   Icon(Icons.favorite_border, size: 18.r, color: HexColor("#999999")),
-                                  SizedBox(width: 4.w),
+                                  SizedBox(width: 4.h),
                                   Text('128', style: TextStyle(fontSize: 12.sp, color: Colors.black)),
                                 ],
                               ),

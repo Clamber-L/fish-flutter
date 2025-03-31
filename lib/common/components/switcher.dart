@@ -132,10 +132,7 @@ class SwitcherState extends State<Switcher> {
   }
 
   void loading() {
-    _progress ??= CircularProgressIndicator(
-      strokeWidth: 10,
-      valueColor: AlwaysStoppedAnimation(widget.trackOnColor),
-    );
+    _progress ??= CircularProgressIndicator(strokeWidth: 10, valueColor: AlwaysStoppedAnimation(widget.trackOnColor));
     super.setState(() => _icon = _progress);
   }
 }

@@ -15,12 +15,11 @@ FishRecord _$FishRecordFromJson(Map<String, dynamic> json) => FishRecord(
   address: json['address'] as String,
 );
 
-Map<String, dynamic> _$FishRecordToJson(FishRecord instance) =>
-    <String, dynamic>{
-      'harvestTime': instance.time,
-      'fishType': instance.type,
-      'weight': instance.weight,
-      'bait': instance.bait,
-      'imageUrl': instance.imageUrl,
-      'address': instance.address,
-    };
+Map<String, dynamic> _$FishRecordToJson(FishRecord instance) => <String, dynamic>{
+  'harvestTime': instance.time,
+  'fishType': instance.type,
+  'weight': instance.weight,
+  'bait': instance.bait,
+  'imageUrl': instance.imageUrl,
+  'address': instance.address,
+};

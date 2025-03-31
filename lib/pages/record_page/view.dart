@@ -35,7 +35,7 @@ class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMi
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [_bestCard(), SizedBox(width: 2.w), _bestCard()],
+                children: [_bestCard(), SizedBox(width: 2.h), _bestCard()],
               ),
               // 日期选择器
               Container(
@@ -43,12 +43,12 @@ class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMi
                 decoration: BoxDecoration(border: Border(bottom: BorderSide(color: HexColor("#F0F0F0")))),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  padding: EdgeInsets.symmetric(horizontal: 16.h),
                   itemCount: 7,
                   itemBuilder: (context, index) {
                     return Container(
-                      width: 80.w,
-                      margin: EdgeInsets.only(right: 8.w),
+                      width: 80.h,
+                      margin: EdgeInsets.only(right: 8.h),
                       decoration: BoxDecoration(border: Border(bottom: BorderSide(color: index == 0 ? HexColor("#50AB8B") : Colors.transparent, width: 2.h))),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +95,7 @@ class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMi
                               ),
                             ),
                             // 今日最大收获
-                            Row(children: [_todayBestCard(), SizedBox(width: 6.w), _todayBestCard(), SizedBox(width: 6.w), _todayBestCard()]),
+                            Row(children: [_todayBestCard(), SizedBox(width: 6.h), _todayBestCard(), SizedBox(width: 6.h), _todayBestCard()]),
                             // 今日收获图片
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -109,7 +109,7 @@ class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMi
                             Row(
                               children: [
                                 Icon(Icons.location_on, size: 16.r, color: HexColor("#50AB8B")),
-                                SizedBox(width: 4.w),
+                                SizedBox(width: 4.h),
                                 Text('北京市朝阳区', style: TextStyle(fontSize: 12.sp, color: Colors.black)),
                                 Spacer(),
                                 Button(text: "查看详情"),
@@ -142,7 +142,7 @@ class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMi
     return Expanded(
       flex: 1,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+        padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.h),
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Colors.grey[200], border: Border.all(color: Colors.grey[200]!)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,7 +171,7 @@ class _RecordPageState extends State<RecordPage> with AutomaticKeepAliveClientMi
             children: [
               Text("最佳今日钓获", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

@@ -9,24 +9,15 @@ class GroupSetting extends StatelessWidget {
   final double hSpacing;
   final EdgeInsets boxInsets;
 
-  GroupSetting({
-    super.key,
-    required this.children,
-    this.vSpacing = 14,
-    this.hSpacing = 14,
-  }) : boxInsets = EdgeInsets.symmetric(
-         vertical: vSpacing,
-         horizontal: hSpacing,
-       );
+  GroupSetting({super.key, required this.children, this.vSpacing = 14, this.hSpacing = 14})
+    : boxInsets = EdgeInsets.symmetric(vertical: vSpacing, horizontal: hSpacing);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: SingleChildScrollView(
         // 提供上下回弹效果
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
+        physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
         child: ListView.builder(
           // 由于SingleChildScrollView提供回弹效果 所以需要将ListView的回弹效果取消
           physics: const NeverScrollableScrollPhysics(),
@@ -55,49 +46,14 @@ abstract class Item {
 
   static Item leading(String leading) => _ItemLeading(leading);
 
-  static Item text({
-    Widget? icon,
-    required String title,
-    String? subtitle,
-    String? description,
-  }) => _ItemText(
-    icon: icon,
-    title: title,
-    subtitle: subtitle,
-    description: description,
-  );
+  static Item text({Widget? icon, required String title, String? subtitle, String? description}) =>
+      _ItemText(icon: icon, title: title, subtitle: subtitle, description: description);
 
-  static Item switcher({
-    Widget? icon,
-    required String title,
-    String? subtitle,
-    String? description,
-    bool value = false,
-    OnChanged? onChanged,
-  }) => _ItemSwitcher(
-    title: title,
-    subtitle: subtitle,
-    icon: icon,
-    description: description,
-    value: value,
-    onChanged: onChanged,
-  );
+  static Item switcher({Widget? icon, required String title, String? subtitle, String? description, bool value = false, OnChanged? onChanged}) =>
+      _ItemSwitcher(title: title, subtitle: subtitle, icon: icon, description: description, value: value, onChanged: onChanged);
 
-  static Item notification({
-    Widget? icon,
-    required String title,
-    String? subtitle,
-    String? description,
-    VoidCallback? onTap,
-    Type? goto,
-  }) => _ItemNotification(
-    title: title,
-    subtitle: subtitle,
-    icon: icon,
-    description: description,
-    onTap: onTap,
-    goto: goto,
-  );
+  static Item notification({Widget? icon, required String title, String? subtitle, String? description, VoidCallback? onTap, Type? goto}) =>
+      _ItemNotification(title: title, subtitle: subtitle, icon: icon, description: description, onTap: onTap, goto: goto);
 }
 
 abstract class _ItemCommon extends Item {
@@ -138,10 +94,7 @@ abstract class _ItemCommon extends Item {
       if (icon is Image) {
         imageIcon = Image(image: (icon as Image).image, width: 32, height: 32);
       } else if (icon is Icon) {
-        imageIcon = IconTheme(
-          data: theme.iconTheme.copyWith(size: 32, color: Colors.blue),
-          child: icon as Icon,
-        );
+        imageIcon = IconTheme(data: theme.iconTheme.copyWith(size: 32, color: Colors.blue), child: icon as Icon);
       }
     }
 
@@ -150,45 +103,25 @@ abstract class _ItemCommon extends Item {
     }
 
     // 主标题
-    Widget caption = Text(
-      title,
-      style: TextStyle(fontSize: 14, color: Colors.black),
-      strutStyle: StrutStyle(leading: 0, forceStrutHeight: true),
-    );
+    Widget caption = Text(title, style: TextStyle(fontSize: 14, color: Colors.black), strutStyle: StrutStyle(leading: 0, forceStrutHeight: true));
 
     //子标题
     if (subtitle?.isNotEmpty ?? false) {
       caption = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
-        children: [
-          caption,
-          Text(
-            subtitle!,
-            style: TextStyle(fontSize: 12, color: Colors.grey),
-            strutStyle: StrutStyle(leading: 0, forceStrutHeight: true),
-          ),
-        ],
+        children: [caption, Text(subtitle!, style: TextStyle(fontSize: 12, color: Colors.grey), strutStyle: StrutStyle(leading: 0, forceStrutHeight: true))],
       );
     }
     if (imageIcon == null) {
-      caption = Padding(
-        padding: EdgeInsets.all(widget.boxInsets.left),
-        child: caption,
-      );
+      caption = Padding(padding: EdgeInsets.all(widget.boxInsets.left), child: caption);
     }
 
     items.add(Expanded(child: caption));
 
     //描述信息
     if (description?.isNotEmpty ?? false) {
-      items.add(
-        Text(
-          description!,
-          style: TextStyle(fontSize: 14, color: Colors.grey),
-          strutStyle: StrutStyle(leading: 0, forceStrutHeight: true),
-        ),
-      );
+      items.add(Text(description!, style: TextStyle(fontSize: 14, color: Colors.grey), strutStyle: StrutStyle(leading: 0, forceStrutHeight: true)));
     }
     // 尾部小组件
     final endWidget = ending(widget, context);
@@ -198,12 +131,7 @@ abstract class _ItemCommon extends Item {
 
     //显示右箭头
     if (arrow!) {
-      items.add(
-        Padding(
-          padding: const EdgeInsets.all(2.0).copyWith(left: 0),
-          child: Icon(Icons.chevron_right, size: 22, color: Colors.grey),
-        ),
-      );
+      items.add(Padding(padding: const EdgeInsets.all(2.0).copyWith(left: 0), child: Icon(Icons.chevron_right, size: 22, color: Colors.grey)));
     }
 
     return Clickable(
@@ -247,22 +175,14 @@ class _ItemLeading extends Item {
   Widget build(GroupSetting widget, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      child: Text(
-        leading,
-        style: const TextStyle(color: Colors.grey, fontSize: 14),
-      ),
+      child: Text(leading, style: const TextStyle(color: Colors.grey, fontSize: 14)),
     );
   }
 }
 
 // 自定义多行内容文本
 class _ItemText extends _ItemCommon {
-  _ItemText({
-    super.icon,
-    required super.title,
-    super.subtitle,
-    super.description,
-  });
+  _ItemText({super.icon, required super.title, super.subtitle, super.description});
 }
 
 class _ItemSwitcher extends _ItemCommon {
@@ -271,14 +191,8 @@ class _ItemSwitcher extends _ItemCommon {
   // 状态切换回调
   final OnChanged? onChanged;
 
-  _ItemSwitcher({
-    super.icon,
-    required super.title,
-    super.subtitle,
-    super.description,
-    this.value = false,
-    this.onChanged,
-  }) : super(arrow: false); // arrow 为 false 即不显示右侧箭头
+  _ItemSwitcher({super.icon, required super.title, super.subtitle, super.description, this.value = false, this.onChanged})
+    : super(arrow: false); // arrow 为 false 即不显示右侧箭头
 
   @override
   Widget? ending(GroupSetting widget, BuildContext context) {
@@ -292,22 +206,10 @@ class _ItemSwitcher extends _ItemCommon {
 }
 
 class _ItemNotification extends _ItemCommon {
-  _ItemNotification({
-    super.icon,
-    required super.title,
-    super.subtitle,
-    super.description,
-    super.onTap,
-    super.goto,
-  });
+  _ItemNotification({super.icon, required super.title, super.subtitle, super.description, super.onTap, super.goto});
 
   @override
   Widget? ending(GroupSetting widget, BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: widget.boxInsets.left),
-      child: const Badge(
-        label: Text("NEW", style: TextStyle(color: Colors.white)),
-      ),
-    );
+    return Padding(padding: EdgeInsets.only(left: widget.boxInsets.left), child: const Badge(label: Text("NEW", style: TextStyle(color: Colors.white))));
   }
 }

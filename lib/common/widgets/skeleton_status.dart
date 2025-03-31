@@ -9,14 +9,7 @@ class SkeletonStatus extends StatelessWidget {
   final double height;
   final VoidCallback retry;
 
-  const SkeletonStatus({
-    super.key,
-    required this.listView,
-    required this.stateStatus,
-    required this.width,
-    required this.height,
-    required this.retry,
-  });
+  const SkeletonStatus({super.key, required this.listView, required this.stateStatus, required this.width, required this.height, required this.retry});
 
   @override
   Widget build(BuildContext context) {
