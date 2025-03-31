@@ -14,7 +14,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   final logic = Get.find<HomeLogic>();
   final state = Get.find<HomeLogic>().state;
 
@@ -31,15 +32,24 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
           children: [
             // 固定在顶部的Row
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.w),
+              padding: EdgeInsets.only(left: 12.w, right: 12.w, top: 10.h),
               child: Row(
                 children: [
                   // 首页 Tab
-                  GestureDetector(onTap: () => logic.changePage(0), child: Obx(() => _tabContainer("首页", 0))),
+                  GestureDetector(
+                    onTap: () => logic.changePage(0),
+                    child: Obx(() => _tabContainer("首页", 0)),
+                  ),
                   // 记录 Tab
-                  GestureDetector(onTap: () => logic.changePage(1), child: Obx(() => _tabContainer("记录", 1))),
+                  GestureDetector(
+                    onTap: () => logic.changePage(1),
+                    child: Obx(() => _tabContainer("记录", 1)),
+                  ),
                   // 测试页面
-                  GestureDetector(onTap: () => Get.offNamed(RouteNames.loginView), child: Text("返回")),
+                  GestureDetector(
+                    onTap: () => Get.offNamed(RouteNames.loginView),
+                    child: Text("返回", style: TextStyle(color: TColor.bg)),
+                  ),
                 ],
               ),
             ),
@@ -66,10 +76,27 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
   Widget _tabContainer(String title, int index) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: state.currentPageIndex.value == index ? Colors.blue : Colors.transparent, width: 2))),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color:
+                state.currentPageIndex.value == index
+                    ? Colors.blue
+                    : Colors.transparent,
+            width: 2,
+          ),
+        ),
+      ),
       child: Text(
         title,
-        style: TextStyle(fontSize: 16.sp, color: state.currentPageIndex.value == index ? Colors.blue : Colors.black, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 14.sp,
+          color:
+              state.currentPageIndex.value == index
+                  ? Colors.blue
+                  : Colors.black,
+          fontWeight: FontWeight.w400,
+        ),
       ),
     );
   }

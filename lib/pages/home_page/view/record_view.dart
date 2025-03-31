@@ -24,14 +24,18 @@ class _RecordViewState extends State<RecordView> {
       child: Column(
         children: [
           SizedBox(height: 8.h),
-          // 收获卡片
-          SummaryCard(),
           // 最佳收获
-          Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [_bestCard(), SizedBox(width: 2.w), _bestCard()]),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [_bestCard(), SizedBox(width: 2.w), _bestCard()],
+          ),
           // 日期选择器
           Container(
             height: 50.h,
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(color: HexColor("#F0F0F0")))),
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: HexColor("#F0F0F0"))),
+            ),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -40,14 +44,39 @@ class _RecordViewState extends State<RecordView> {
                 return Container(
                   width: 80.w,
                   margin: EdgeInsets.only(right: 8.w),
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: index == 0 ? HexColor("#50AB8B") : Colors.transparent, width: 2.h))),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color:
+                            index == 0
+                                ? HexColor("#50AB8B")
+                                : Colors.transparent,
+                        width: 2.h,
+                      ),
+                    ),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('${index + 1}日', style: TextStyle(fontSize: 14.sp, color: index == 0 ? HexColor("#50AB8B") : HexColor("#666666"))),
+                      Text(
+                        '${index + 1}日',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color:
+                              index == 0
+                                  ? HexColor("#50AB8B")
+                                  : HexColor("#666666"),
+                        ),
+                      ),
                       Text(
                         '周${['一', '二', '三', '四', '五', '六', '日'][index]}',
-                        style: TextStyle(fontSize: 12.sp, color: index == 0 ? HexColor("#50AB8B") : HexColor("#999999")),
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color:
+                              index == 0
+                                  ? HexColor("#50AB8B")
+                                  : HexColor("#999999"),
+                        ),
                       ),
                     ],
                   ),
@@ -63,7 +92,9 @@ class _RecordViewState extends State<RecordView> {
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 2,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -74,33 +105,69 @@ class _RecordViewState extends State<RecordView> {
                           padding: EdgeInsets.symmetric(vertical: 6.h),
                           child: Row(
                             children: [
-                              Text("2025-03-28", style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold)),
+                              Text(
+                                "2025-03-28",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                                 margin: EdgeInsets.only(left: 4.0),
-                                decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(8.r)),
-                                child: Text("周末", style: TextStyle(color: Colors.blue, fontSize: 12.sp)),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(8.r),
+                                ),
+                                child: Text(
+                                  "周末",
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
                         ),
                         // 今日最大收获
-                        Row(children: [_todayBestCard(), SizedBox(width: 6.w), _todayBestCard(), SizedBox(width: 6.w), _todayBestCard()]),
+                        Row(
+                          children: [
+                            _todayBestCard(),
+                            SizedBox(width: 6.w),
+                            _todayBestCard(),
+                            SizedBox(width: 6.w),
+                            _todayBestCard(),
+                          ],
+                        ),
                         // 今日收获图片
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 8.h),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16.r),
-                            child: Image.network("https://cdn.pixabay.com/photo/2022/09/17/21/18/butterfly-7461850_1280.jpg"),
+                            child: Image.network(
+                              "https://cdn.pixabay.com/photo/2022/09/17/21/18/butterfly-7461850_1280.jpg",
+                            ),
                           ),
                         ),
 
                         // 今日收获详情
                         Row(
                           children: [
-                            Icon(Icons.location_on, size: 16.r, color: HexColor("#50AB8B")),
+                            Icon(
+                              Icons.location_on,
+                              size: 16.r,
+                              color: HexColor("#50AB8B"),
+                            ),
                             SizedBox(width: 4.w),
-                            Text('北京市朝阳区', style: TextStyle(fontSize: 12.sp, color: Colors.black)),
+                            Text(
+                              '北京市朝阳区',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.black,
+                              ),
+                            ),
                             Spacer(),
                             Button(text: "查看详情"),
                           ],
@@ -122,7 +189,11 @@ class _RecordViewState extends State<RecordView> {
       flex: 1,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Colors.grey[200], border: Border.all(color: Colors.grey[200]!)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.r),
+          color: Colors.grey[200],
+          border: Border.all(color: Colors.grey[200]!),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -142,13 +213,18 @@ class _RecordViewState extends State<RecordView> {
       child: Card(
         elevation: 1, // 增加阴影深度
         color: Colors.green[500],
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.sp),
+        ),
         child: Padding(
           padding: EdgeInsets.only(top: 16.h, bottom: 8.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("最佳今日钓获", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+              Text(
+                "最佳今日钓获",
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                 child: Row(
@@ -156,14 +232,40 @@ class _RecordViewState extends State<RecordView> {
                   children: [
                     Column(
                       children: [
-                        Text("12", style: TextStyle(fontSize: 20.sp, color: Colors.white, fontWeight: FontWeight.bold)),
-                        Text("条数", style: TextStyle(fontSize: 16.sp, color: Colors.white)),
+                        Text(
+                          "12",
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "条数",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                     Column(
                       children: [
-                        Text("8.5", style: TextStyle(fontSize: 20.sp, color: Colors.white, fontWeight: FontWeight.bold)),
-                        Text("公斤", style: TextStyle(fontSize: 16.sp, color: Colors.white)),
+                        Text(
+                          "8.5",
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "公斤",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ],
