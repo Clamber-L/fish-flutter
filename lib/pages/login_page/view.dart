@@ -37,14 +37,30 @@ class _LoginPageState extends State<LoginPage> {
                       duration: Duration(milliseconds: 300),
                       height: viewInsets.bottom > 0 ? 0 : 100.h,
                       child: Center(
-                        child: CircleAvatar(radius: 45.r, backgroundColor: Colors.transparent, backgroundImage: AssetImage('assets/img/app_logo.jpg')),
+                        child: CircleAvatar(
+                          radius: 45.r,
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage(
+                            'assets/img/app_logo.jpg',
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(height: 20.h),
 
-                    Text('欢迎回来', style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold, color: Colors.black)),
+                    Text(
+                      '欢迎回来',
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
                     SizedBox(height: 10.h),
-                    Text('使用手机号验证码登录', style: TextStyle(fontSize: 14.sp, color: Colors.grey)),
+                    Text(
+                      '使用手机号验证码登录',
+                      style: TextStyle(fontSize: 14.sp, color: Colors.grey),
+                    ),
                     SizedBox(height: 30.h),
                     // 手机号输入框
                     TextField(
@@ -71,9 +87,13 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(fontSize: 16.sp), // 设置输入文字大小
                             decoration: InputDecoration(
                               labelText: '验证码',
-                              contentPadding: EdgeInsets.symmetric(vertical: 16.h), // 调整垂直间距
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 16.h,
+                              ), // 调整垂直间距
                               border: UnderlineInputBorder(),
-                              labelStyle: TextStyle(fontSize: 14.sp), // 设置标签文字大小
+                              labelStyle: TextStyle(
+                                fontSize: 14.sp,
+                              ), // 设置标签文字大小
                             ),
                           ),
                         ),
@@ -81,16 +101,34 @@ class _LoginPageState extends State<LoginPage> {
                         GetBuilder<LoginLogic>(
                           builder: (logic) {
                             return GestureDetector(
-                              onTap: state.isCountingDown ? null : logic.getVerificationCode,
+                              onTap:
+                                  state.isCountingDown
+                                      ? null
+                                      : logic.getVerificationCode,
                               child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.h),
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 10.h,
+                                  horizontal: 10.h,
+                                ),
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: state.isCountingDown ? Colors.grey : Colors.blueAccent),
+                                  border: Border.all(
+                                    color:
+                                        state.isCountingDown
+                                            ? Colors.grey
+                                            : Colors.blueAccent,
+                                  ),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Text(
-                                  state.isCountingDown ? '${state.countdown}s后重新获取' : '获取验证码',
-                                  style: TextStyle(color: state.isCountingDown ? Colors.grey : Colors.blue),
+                                  state.isCountingDown
+                                      ? '${state.countdown}s后重新获取'
+                                      : '获取验证码',
+                                  style: TextStyle(
+                                    color:
+                                        state.isCountingDown
+                                            ? Colors.grey
+                                            : Colors.blue,
+                                  ),
                                 ),
                               ),
                             );
@@ -105,21 +143,55 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Obx(
-                          () => Checkbox(value: state.isAgreeProtocol.value, onChanged: (value) => logic.toggleAgreeProtocol(), activeColor: Colors.blueAccent),
+                          () => Checkbox(
+                            value: state.isAgreeProtocol.value,
+                            onChanged: (value) => logic.toggleAgreeProtocol(),
+                            activeColor: Colors.blueAccent,
+                          ),
                         ),
-                        Wrap(
-                          children: [
-                            Text('我已阅读并同意', style: TextStyle(fontSize: 12.sp, color: Colors.black)),
-                            GestureDetector(
-                              onTap: () => logic.showUserAgreement(),
-                              child: Text('《用户协议》', style: TextStyle(fontSize: 12.sp, color: Colors.blue)),
-                            ),
-                            Text('和', style: TextStyle(fontSize: 12.sp, color: Colors.black)),
-                            GestureDetector(
-                              onTap: () => logic.showPrivacyPolicy(),
-                              child: Text('《隐私政策》', style: TextStyle(fontSize: 12.sp, color: Colors.blue)),
-                            ),
-                          ],
+                        Flexible(
+                          // 使用Flexible防止溢出
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min, // 重要：避免占用全部宽度
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  '我已阅读并同意',
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => logic.showUserAgreement(),
+                                child: Text(
+                                  '《用户协议》',
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '和',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => logic.showPrivacyPolicy(),
+                                child: Text(
+                                  '《隐私政策》',
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -132,7 +204,9 @@ class _LoginPageState extends State<LoginPage> {
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(vertical: 12.h),
                           backgroundColor: Colors.blueAccent,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
                         ),
                         child: Text('登录', style: TextStyle(fontSize: 16.sp)),
                       ),
@@ -140,13 +214,25 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: 16.h),
 
                     // 其他登录方式
-                    Center(child: Text('其他登录方式', style: TextStyle(color: Colors.grey))),
+                    Center(
+                      child: Text(
+                        '其他登录方式',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
                     SizedBox(height: 10.h),
                     // 微信登录
                     Center(
                       child: Column(
                         children: [
-                          IconButton(icon: Image.asset('assets/img/wechat.png', width: 48.h, height: 48.h), onPressed: logic.loginWithWeChat),
+                          IconButton(
+                            icon: Image.asset(
+                              'assets/img/wechat.png',
+                              width: 48.h,
+                              height: 48.h,
+                            ),
+                            onPressed: logic.loginWithWeChat,
+                          ),
                           // SizedBox(height: 8.h),
                           // Text('微信登录', style: TextStyle(color: Colors.grey)),
                         ],
