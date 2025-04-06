@@ -7,4 +7,8 @@ class FishRecordApi extends BaseApi<FishRecord> {
   Future<StatusResult<List<FishRecord>>> list() {
     return api.getList("$prefix/list");
   }
+
+  Future<StatusPagerResult<FishRecord>> listPage(int page, int size) {
+    return super.selectPageList(uri: "$prefix/list_page", page: page, size: size);
+  }
 }

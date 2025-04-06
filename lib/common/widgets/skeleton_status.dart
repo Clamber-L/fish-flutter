@@ -14,7 +14,7 @@ class SkeletonStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return stateStatus == Status.LOADING
-        ? Skeletonizer(enabled: true, child: listView)
+        ? Skeletonizer(enabled: stateStatus == Status.LOADING, child: listView)
         : stateStatus == Status.LOADED
         ? listView
         : SizedBox(

@@ -34,8 +34,8 @@ class HomeLogic extends GetxController {
 
   // 获取收获列表
   void getRecordList() async {
-    StatusResult<List<FishRecord>> result = await fishRecordApi.list();
-    state.fishRecord = result.data;
+    StatusPagerResult<FishRecord> result = await fishRecordApi.listPage(1, 5);
+    state.fishRecord = result.data.items ?? [];
     state.isLoading = false;
     state.status = result.status; // 更新状态为成功
     update();
