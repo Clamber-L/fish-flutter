@@ -13,7 +13,8 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClientMixin<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage>
+    with AutomaticKeepAliveClientMixin<ProfilePage> {
   final ProfileLogic logic = Get.find();
   final ProfileState state = Get.find<ProfileLogic>().state;
 
@@ -25,56 +26,121 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
     super.build(context);
     return Scaffold(
       body: SafeArea(
-        // 中间我的成就
-        // 底部其他信息
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 12.h),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
           child: Column(
             children: [
               // 头部人物资料信息
               Container(
                 padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.h),
-                decoration: BoxDecoration(color: HexColor("#50AB8B"), borderRadius: BorderRadius.circular(12.r)),
-                child: Row(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      'https://cdn.pixabay.com/photo/2024/06/29/06/30/forest-8860740_1280.png',
+                    ), // 替换为你的图片路径
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Column(
                   children: [
-                    // 头像
-                    CircleAvatar(
-                      radius: 40.r,
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/05/31/00/24/aquarium-2358739_1280.jpg"),
-                    ),
-                    SizedBox(width: 20.h),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("陈师傅", style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Text("钓鱼老手", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400)),
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: 5.h),
-                                child: SizedBox(width: 1, height: 12, child: DecoratedBox(decoration: BoxDecoration(color: Colors.grey[300]))),
-                              ),
-                              Text("已钓鱼384天", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400)),
-                            ],
+                    // 1.头像 姓名部分
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 35.r,
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: NetworkImage(
+                            "https://cdn.pixabay.com/photo/2017/05/31/00/24/aquarium-2358739_1280.jpg",
                           ),
-                          SizedBox(height: 10.h),
-                          Row(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 8.h),
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r), color: Colors.white.withAlpha(50)),
-                                child: Text("钓鱼283天", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w300)),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                    // 2.简介
+                    // 3.属性
                   ],
                 ),
+                // child: Row(
+                //   children: [
+                //     // 头像
+                //     CircleAvatar(
+                //       radius: 40.r,
+                //       backgroundColor: Colors.transparent,
+                //       backgroundImage: NetworkImage(
+                //         "https://cdn.pixabay.com/photo/2017/05/31/00/24/aquarium-2358739_1280.jpg",
+                //       ),
+                //     ),
+                //     SizedBox(width: 20.h),
+                //     Expanded(
+                //       child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text(
+                //             "陈师傅",
+                //             style: TextStyle(
+                //               fontSize: 20.sp,
+                //               fontWeight: FontWeight.bold,
+                //             ),
+                //           ),
+                //           SizedBox(height: 5.h),
+                //           Row(
+                //             children: [
+                //               Text(
+                //                 "钓鱼老手",
+                //                 style: TextStyle(
+                //                   fontSize: 13.sp,
+                //                   fontWeight: FontWeight.w400,
+                //                 ),
+                //               ),
+                //               Container(
+                //                 margin: EdgeInsets.symmetric(horizontal: 5.h),
+                //                 child: SizedBox(
+                //                   width: 1,
+                //                   height: 12,
+                //                   child: DecoratedBox(
+                //                     decoration: BoxDecoration(
+                //                       color: Colors.grey[300],
+                //                     ),
+                //                   ),
+                //                 ),
+                //               ),
+                //               Text(
+                //                 "已钓鱼384天",
+                //                 style: TextStyle(
+                //                   fontSize: 13.sp,
+                //                   fontWeight: FontWeight.w400,
+                //                 ),
+                //               ),
+                //             ],
+                //           ),
+                //           SizedBox(height: 10.h),
+                //           Row(
+                //             children: [
+                //               Container(
+                //                 padding: EdgeInsets.symmetric(
+                //                   vertical: 2.h,
+                //                   horizontal: 8.h,
+                //                 ),
+                //                 decoration: BoxDecoration(
+                //                   borderRadius: BorderRadius.circular(12.r),
+                //                   color: Colors.white.withAlpha(50),
+                //                 ),
+                //                 child: Text(
+                //                   "钓鱼283天",
+                //                   style: TextStyle(
+                //                     fontSize: 12.sp,
+                //                     fontWeight: FontWeight.w300,
+                //                   ),
+                //                 ),
+                //               ),
+                //             ],
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ),
               // 修改中间成就部分和添加底部信息
               Column(
@@ -82,16 +148,32 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                   // 中间我的成就
                   Container(
                     margin: EdgeInsets.only(top: 20.h),
-                    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.h),
+                    padding: EdgeInsets.symmetric(
+                      vertical: 16.h,
+                      horizontal: 16.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
-                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6.r, offset: Offset(0, 2.h))],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 6.r,
+                          offset: Offset(0, 2.h),
+                        ),
+                      ],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("我的成就", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold, color: HexColor("#333333"))),
+                        Text(
+                          "我的成就",
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: HexColor("#333333"),
+                          ),
+                        ),
                         SizedBox(height: 12.h),
                         GridView.count(
                           shrinkWrap: true,
@@ -107,9 +189,15 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                                   height: 45.r, // Reduced from 50.r
                                   decoration: BoxDecoration(
                                     color: HexColor("#E8F5EE"),
-                                    borderRadius: BorderRadius.circular(22.5.r), // Adjusted for new size
+                                    borderRadius: BorderRadius.circular(
+                                      22.5.r,
+                                    ), // Adjusted for new size
                                   ),
-                                  child: Icon(Icons.star, color: HexColor("#50AB8B"), size: 20.r),
+                                  child: Icon(
+                                    Icons.star,
+                                    color: HexColor("#50AB8B"),
+                                    size: 20.r,
+                                  ),
                                 ),
                                 SizedBox(height: 4.h), // Reduced from 6.h
                                 Text(
@@ -131,11 +219,20 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                   // 底部其他信息
                   Container(
                     margin: EdgeInsets.only(top: 20.h),
-                    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.h),
+                    padding: EdgeInsets.symmetric(
+                      vertical: 16.h,
+                      horizontal: 16.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
-                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6.r, offset: Offset(0, 2.h))],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 6.r,
+                          offset: Offset(0, 2.h),
+                        ),
+                      ],
                     ),
                     child: Column(
                       children: [
