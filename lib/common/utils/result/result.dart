@@ -9,16 +9,10 @@ class Result extends Model<Result> {
   const Result({required this.code, required this.message, required this.data});
 
   factory Result.fromJson(Map<String, dynamic> json) {
-    return Result(
-      code: json['code'] ?? 0,
-      message: json['message'] ?? '',
-      data: json['data'],
-    );
+    return Result(code: json['code'] ?? 0, message: json['message'] ?? '', data: json['data']);
   }
 
-  Result.of(this.code, {String? message})
-    : data = null,
-      message = message ?? "Unknown";
+  Result.of(this.code, {String? message}) : data = null, message = message ?? "Unknown";
 
   Map<String, dynamic> toJson() {
     return {'code': code, 'message': message, 'data': data.toString()};
@@ -37,7 +31,10 @@ class Result extends Model<Result> {
   bool get size => isEmpty ? 0 : (isArray ? data.length : 1);
 
   // data转为model
-  T toModel<T>(Converter<T> converter) => converter(data);
+  T toModel<T>(Converter<T> converter) {
+    if (isEmpty) return converter(<String, dynamic>{});
+    return converter(data);
+  }
 
   // data转为List
   List<T> toArray<T>(Converter<T> converter) {

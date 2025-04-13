@@ -22,7 +22,7 @@ class BaseApi<M extends Model<M>> {
   /// 查询某模块的分页列表数据
   Future<StatusPagerResult<M>> selectPageList({required String uri, required int page, int? size, Map<String, dynamic>? query}) {
     query = query ?? <String, dynamic>{};
-    query["page"] = page;
+    query["pageNum"] = page;
     query["pageSize"] = size ?? 10;
     return api.getPageList(uri, query: query);
   }

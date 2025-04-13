@@ -16,12 +16,7 @@ class StatusView extends StatefulWidget {
   final WidgetBuilder? builder;
   final StatusViewController? controller;
 
-  StatusView({
-    this.status = Status.LOADING,
-    this.retry,
-    this.builder,
-    this.controller,
-  }) : super(key: controller?._key);
+  StatusView({this.status = Status.LOADING, this.retry, this.builder, this.controller}) : super(key: controller?._key);
 
   @override
   State<StatusView> createState() => _StatusViewState();
@@ -56,28 +51,14 @@ class _StatusViewState extends State<StatusView> {
 
   Widget _baseView(List<Widget> items) {
     return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        SliverFillRemaining(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: items,
-          ),
-        ),
-      ],
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      slivers: [SliverFillRemaining(child: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: items))],
     );
   }
 
   Widget _loadingView() {
     return _baseView(<Widget>[
-      const SizedBox(
-        width: 30,
-        height: 30,
-        child: CircularProgressIndicator(color: Colors.red),
-      ),
+      const SizedBox(width: 30, height: 30, child: CircularProgressIndicator(color: Colors.red)),
       const SizedBox(height: 10),
       const Text("加载中，请稍后", style: TextStyle(color: Colors.grey)),
     ]);
@@ -86,10 +67,7 @@ class _StatusViewState extends State<StatusView> {
   Widget _timeoutView() {
     return _baseView([
       const Icon(Icons.timelapse_outlined, size: 48, color: Colors.grey),
-      const Padding(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-        child: Text("请求超时，请重新加载试一试", style: TextStyle(color: Colors.grey)),
-      ),
+      const Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 20), child: Text("请求超时，请重新加载试一试", style: TextStyle(color: Colors.grey))),
       _retryButton(),
     ]);
   }
@@ -98,10 +76,7 @@ class _StatusViewState extends State<StatusView> {
   Widget _networkErrorView() {
     return _baseView([
       const Icon(Icons.network_check, size: 48, color: Colors.grey),
-      const Padding(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-        child: Text("网络异常，请确保您的网络正常", style: TextStyle(color: Colors.grey)),
-      ),
+      const Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 20), child: Text("网络异常，请确保您的网络正常", style: TextStyle(color: Colors.grey))),
       _retryButton(),
     ]);
   }
@@ -110,10 +85,7 @@ class _StatusViewState extends State<StatusView> {
   Widget _emptyView() {
     return _baseView([
       const Icon(Icons.hourglass_empty, size: 48, color: Colors.grey),
-      const Padding(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-        child: Text("暂无更多数据，请重新加载试一试", style: TextStyle(color: Colors.grey)),
-      ),
+      const Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 20), child: Text("暂无更多数据，请重新加载试一试", style: TextStyle(color: Colors.grey))),
       _retryButton(),
     ]);
   }
@@ -122,10 +94,7 @@ class _StatusViewState extends State<StatusView> {
   Widget _failedView() {
     return _baseView([
       const Icon(Icons.data_exploration, size: 48, color: Colors.grey),
-      const Padding(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-        child: Text("加载失败，请重新加载试一试", style: TextStyle(color: Colors.grey)),
-      ),
+      const Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 20), child: Text("加载失败，请重新加载试一试", style: TextStyle(color: Colors.grey))),
       _retryButton(),
     ]);
   }

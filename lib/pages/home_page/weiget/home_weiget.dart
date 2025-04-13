@@ -101,7 +101,7 @@ class HarvestCard extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => logic.changePage(1),
+                  onTap: () => {},
                   child: Text("查看更多收获>", style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w300, color: TColor.secondaryText)),
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fish/common/index.dart';
 import 'package:flutter_fish/pages/home_page/logic.dart';
@@ -18,49 +19,54 @@ class _RecordViewState extends State<RecordView> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.h),
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-        child: Column(
-          children: [
-            SizedBox(height: 8.h),
-            HarvestCard(),
-            SizedBox(height: 8.h),
-            // 最佳收获
-            Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [_bestCard(), SizedBox(width: 2.h), _bestCard()]),
-            // todo! 日期选择器
-            // todo! 记录列表
-            SizedBox(height: 8.h),
-            // Container(
-            //   padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.h),
-            //   alignment: Alignment.centerLeft,
-            //   child: Text("今日收获", style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500)),
-            // ),
-            GetBuilder<HomeLogic>(
-              init: HomeLogic(),
-              builder: (builder) {
-                Widget listView = ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.fishRecord!.length,
-                  itemBuilder: (context, index) {
-                    return FishCard(record: state.fishRecord![index]);
-                  },
-                );
-                return SkeletonStatus(
-                  listView: listView,
-                  stateStatus: state.status,
-                  width: MediaQuery.of(context).size.width,
-                  height: 150.h,
-                  retry: logic.getRecordList,
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+    return Placeholder();
+    // return Padding(
+    //   padding: EdgeInsets.symmetric(horizontal: 12.h),
+    //   child: SingleChildScrollView(
+    //     physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+    //     child: Column(
+    //       children: [
+    //         SizedBox(height: 8.h),
+    //         HarvestCard(),
+    //         SizedBox(height: 8.h),
+    //         // 最佳收获
+    //         Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [_bestCard(), SizedBox(width: 2.h), _bestCard()]),
+    //         // todo! 日期选择器
+    //         // todo! 记录列表
+    //         SizedBox(height: 8.h),
+    //         // Container(
+    //         //   padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.h),
+    //         //   alignment: Alignment.centerLeft,
+    //         //   child: Text("今日收获", style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500)),
+    //         // ),
+    //         GetBuilder<HomeLogic>(
+    //           init: HomeLogic(),
+    //           builder: (builder) {
+    //             Widget listView = EasyRefresh(
+    //               onRefresh: () async {},
+    //               onLoad: () async {},
+    //               child: ListView.builder(
+    //                 shrinkWrap: true,
+    //                 physics: const NeverScrollableScrollPhysics(),
+    //                 itemCount: state.fishRecord!.length,
+    //                 itemBuilder: (context, index) {
+    //                   return FishCard(record: state.fishRecord![index]);
+    //                 },
+    //               ),
+    //             );
+    //             return SkeletonStatus(
+    //               listView: listView,
+    //               stateStatus: state.status,
+    //               width: MediaQuery.of(context).size.width,
+    //               height: 150.h,
+    //               retry: logic.getRecordList,
+    //             );
+    //           },
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 
   Widget _bestCard() {
