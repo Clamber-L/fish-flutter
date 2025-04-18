@@ -57,7 +57,7 @@ class HttpApi<M extends Model<M>> {
     );
   }
 
-  Future<StatusPagerResult<M>> getPageList(
+  Future<StatusPager<M>> getPageList(
     String path, {
     Duration? delay,
     Map<String, dynamic>? query,
@@ -72,7 +72,7 @@ class HttpApi<M extends Model<M>> {
       cancelToken: cancelToken,
       onReceiveProgress: onReceiveProgress,
     ).then(
-      (res) => StatusPagerResult(
+      (res) => StatusPager(
         status:
             res.success
                 ? Status.LOADED

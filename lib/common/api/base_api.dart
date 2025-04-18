@@ -20,10 +20,15 @@ class BaseApi<M extends Model<M>> {
   // Future<(List<M>, Status)> selectList() => api.getList("$prefix/all");
 
   /// 查询某模块的分页列表数据
-  Future<StatusPagerResult<M>> selectPageList({required String uri, required int page, int? size, Map<String, dynamic>? query}) {
+  Future<StatusPager<M>> selectPageList({
+    required String uri,
+    required int page,
+    int? size,
+    Map<String, dynamic>? query,
+  }) {
     query = query ?? <String, dynamic>{};
     query["pageNum"] = page;
-    query["pageSize"] = size ?? 10;
+    query["pageSize"] = size ?? 5;
     return api.getPageList(uri, query: query);
   }
 
@@ -31,7 +36,8 @@ class BaseApi<M extends Model<M>> {
   Future<bool> create(M model) => api.post(prefix, data: model);
 
   /// 修改模型
-  Future<bool> updateById(M model) => api.post("$prefix/${model.id}", data: model);
+  Future<bool> updateById(M model) =>
+      api.post("$prefix/${model.id}", data: model);
 
   /// 通过 ID 删除指定的模型数据
   Future<bool> deleteById(String id) => api.post("$prefix/$id");

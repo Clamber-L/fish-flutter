@@ -7,4 +7,5 @@ class RouteNames {
   static const discoverView = '/discover_view';
   static const profileView = '/profile_view';
   static const addRecordView = '/add_record_view';
+  static const recordListView = '/record_list_view';
 }

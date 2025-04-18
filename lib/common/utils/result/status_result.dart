@@ -24,6 +24,8 @@ class StatusResult<T> {
 }
 
 // 分页结果特殊封装
-class StatusPagerResult<T extends Model<T>> extends StatusResult<Pager<T>> {
-  const StatusPagerResult({required super.status, required super.data});
+class StatusPager<T extends Model<T>> {
+  final Status status;
+  final Pager<T> data;
+  const StatusPager({required this.status, required this.data});
 }

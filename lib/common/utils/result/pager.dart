@@ -8,7 +8,13 @@ class Pager<T> extends Model<Pager<T>> {
   final int totalPage;
   final List<T>? items;
 
-  const Pager({required this.page, required this.pageSize, required this.totalSize, required this.totalPage, required this.items});
+  const Pager({
+    required this.page,
+    required this.pageSize,
+    required this.totalSize,
+    required this.totalPage,
+    required this.items,
+  });
 
   bool get isEmpty => Helper.isEmpty(items);
 
@@ -20,12 +26,18 @@ class Pager<T> extends Model<Pager<T>> {
       pageSize: json['pageSize'] ?? 0,
       totalSize: json['totalSize'] ?? 0,
       totalPage: json['totalPage'] ?? 0,
-      items: items?.map((e) => converter(e)).toList(),
+      items: items == null ? [] : items.map((e) => converter(e)).toList(),
     );
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return {'page': page, 'pageSize': pageSize, 'totalSize': totalSize, 'totalPage': totalPage, 'items': items?.map((e) => e.toString()).toList()};
+    return {
+      'page': page,
+      'pageSize': pageSize,
+      'totalSize': totalSize,
+      'totalPage': totalPage,
+      'items': items?.map((e) => e.toString()).toList(),
+    };
   }
 }

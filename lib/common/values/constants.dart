@@ -7,7 +7,8 @@ class Constants {
   static const baseUrl = 'https://rust-fish-server-75hn.shuttle.app';
 
   // 骨架屏默认图片
-  static const skeletonImg = "https://cdn.pixabay.com/photo/2025/03/06/08/25/blueberries-9450130_960_720.jpg";
+  static const skeletonImg =
+      "https://cdn.pixabay.com/photo/2025/03/06/08/25/blueberries-9450130_960_720.jpg";
 
   // 服务端返回状态码(成功)
   static const successCode = 200;
