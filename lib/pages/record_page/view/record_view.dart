@@ -88,8 +88,8 @@ class _RecordViewState extends State<RecordView> {
               //   height: 150.h,
               //   retry: () => logic.initRecordList(),
               // );
-              return RefreshList<FishRecord>(
-                items: logic.state.result, // 假设初始页码为 1，可根据实际情况调整
+              return RefreshList(
+                items: logic.state.result,
                 noMore: logic.state.isNoMore,
                 builder: (BuildContext context, int index, FishRecord model) {
                   return FishCard(record: model);

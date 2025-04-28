@@ -25,7 +25,7 @@ class RefreshList<M extends Model<M>> extends StatefulWidget {
   State<RefreshList> createState() => _RefreshListState<M>();
 }
 
-class _RefreshListState<M extends Model<M>> extends State<RefreshList> {
+class _RefreshListState<M extends Model<M>> extends State<RefreshList<M>> {
   late final EasyRefreshController _controller;
 
   @override
